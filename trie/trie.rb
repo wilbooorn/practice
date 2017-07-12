@@ -27,7 +27,6 @@ class Trie
     node.word
   end
 
-
   def starts_with(prefix)
     node = @root
     prefix.each_char do |letter|
@@ -38,15 +37,27 @@ class Trie
     end
     true
   end
+
+  def delete(word)
+    return false unless search(word)
+    node = @root
+    word.each_char do |letter|
+      if node.children.length == 1 && node.word
+        node.children = Hash.new
+        return true
+      end
+      node = node.children[letter]
+    end
+    node.word = false
+    true
+  end
 end
 
 t = Trie.new
-puts t.search("hello")
 t.insert("robin")
-t.insert("rob")
 t.insert("hello")
-t.insert("world")
 puts t.search("robin")
-puts t.search("robi")
-puts t.starts_with("robins")
-puts t.starts_with("robi")
+puts t.search("hello")
+t.delete("robin")
+puts t.search("robin")
+puts t.starts_with("rob")
