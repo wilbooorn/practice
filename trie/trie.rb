@@ -53,11 +53,11 @@ class Trie
   end
 end
 
-t = Trie.new
-t.insert("robin")
-t.insert("hello")
-puts t.search("robin")
-puts t.search("hello")
-t.delete("robin")
-puts t.search("robin")
-puts t.starts_with("rob")
+# t = Trie.new
+# t.insert("robin")
+# t.insert("hello")
+# puts t.search("robin")
+# puts t.search("hello")
+# t.delete("robin")
+# puts t.search("robin")
+# puts t.starts_with("rob")
