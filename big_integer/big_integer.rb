@@ -39,5 +39,5 @@ class BigInteger
 end
 
 
-int = BigInteger.new("99999", "11111")
+int = BigInteger.new("10", "1000")
 int.add
