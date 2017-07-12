@@ -1,40 +1,52 @@
 require_relative 'trie_node'
 
 class Trie
-=begin
-    Initialize your data structure here.
-=end
-    def initialize
-      @root = TrieNode.new
-    end
-=begin
-    Inserts a word into the trie.
-    :type word: String
-    :rtype: Void
-=end
-    def insert(word)
+  def initialize
+    @root = TrieNode.new
+  end
 
+  def insert(word)
+    node = @root
+    word.each_char do |letter|
+      if !node.children.keys.include?(letter)
+        node.children[letter] = TrieNode.new
+      end
+      node = node.children[letter]
     end
-=begin
-    Returns if the word is in the trie.
-    :type word: String
-    :rtype: Boolean
-=end
-    def search(word)
+    node.word = true
+  end
 
+  def search(word)
+    node = @root
+    word.each_char do |letter|
+      if !node.children.keys.include?(letter)
+        return false
+      end
+      node = node.children[letter]
     end
-=begin
-    Returns if there is any word in the trie that starts with the given prefix.
-    :type prefix: String
-    :rtype: Boolean
-=end
-    def starts_with(prefix)
+    node.word
+  end
 
+
+  def starts_with(prefix)
+    node = @root
+    prefix.each_char do |letter|
+      if !node.children.include?(letter)
+        return false
+      end
+      node = node.children[letter]
     end
+    true
+  end
 end
 
-# Your Trie object will be instantiated and called as such:
-# obj = Trie.new()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.starts_with(prefix)
+t = Trie.new
+puts t.search("hello")
+t.insert("robin")
+t.insert("rob")
+t.insert("hello")
+t.insert("world")
+puts t.search("robin")
+puts t.search("robi")
+puts t.starts_with("robins")
+puts t.starts_with("robi")

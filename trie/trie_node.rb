@@ -1,17 +1,9 @@
 class TrieNode
-  attr_accessor :store
+  attr_accessor :children, :word
 
-  def initialize(value = nil)
-    @store = [value]
-    @next = nil
-  end
-
-  def include?(letter)
-    @store.include?(letter)
-  end
-
-  def push(letter)
-    @store.push(letter)
+  def initialize
+    @children = Hash.new
+    @word = false
   end
 
 end
