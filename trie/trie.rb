@@ -8,7 +8,7 @@ class Trie
   def insert(word)
     node = @root
     word.each_char do |letter|
-      if !node.children.keys.include?(letter)
+      if !node.children.include?(letter)
         node.children[letter] = TrieNode.new
       end
       node = node.children[letter]
@@ -19,7 +19,7 @@ class Trie
   def search(word)
     node = @root
     word.each_char do |letter|
-      if !node.children.keys.include?(letter)
+      if !node.children.include?(letter)
         return false
       end
       node = node.children[letter]
