@@ -1,3 +1,12 @@
+class QItem
+  attr_accessor :word, :len
+  def initialize(word, len)
+    @word = word
+    @len = len
+  end
+end
+
+
 def isadjacent(a, b)
   count = 0
   n = a.length
@@ -11,33 +20,23 @@ def isadjacent(a, b)
 end
 
 
-class QItem
-  attr_accessor :word, :len
-  def initialize(word, len)
-    @word = word
-    @len = len
-  end
-end
-
-
 def shortest_chain(start, target, dict)
   item = QItem.new(start, 1)
-  q  = [item]
-  while !q.empty?
-    current = q.pop
+  queue = [item]
+  while !queue.empty?
+    current = queue.pop
     dict.each do |word|
       temp = word
-      if isadjacent(curr.word, temp)
+      if isadjacent(current.word, temp)
         item.word = temp
         item.len  = current.len + 1
-        q.push(item)
+        queue.push(item)
         dict.delete(temp)
-        p item
         return item.len - 1 if temp == target
       end
     end
   end
-
+  false
 end
 
 d = []
