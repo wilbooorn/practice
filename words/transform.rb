@@ -1,4 +1,4 @@
-class QItem
+class Item
   attr_accessor :word, :len
   def initialize(word, len)
     @word = word
@@ -21,7 +21,7 @@ end
 
 
 def shortest_chain(start, target, dict)
-  item = QItem.new(start, 1)
+  item = Item.new(start, 0)
   queue = [item]
   while !queue.empty?
     current = queue.pop
@@ -32,7 +32,7 @@ def shortest_chain(start, target, dict)
         item.len  = current.len + 1
         queue.push(item)
         dict.delete(temp)
-        return item.len - 1 if temp == target
+        return item.len if temp == target
       end
     end
   end
